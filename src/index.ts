@@ -7,7 +7,7 @@ import { createServer } from 'http';
 
 dotenv.config({ path: path.resolve(__dirname, 'environments/.env') });
 
-import { AppDataSource } from './data-source';
+import { AppDataSource, initializeDataBase } from './data-source';
 import { domainRouter } from './modules/domain/domain.router';
 import { publisherRouter } from './modules/publisher/publisher.router';
 
@@ -19,6 +19,7 @@ app.use(cors({ origin: '*' }));
 // Database Initialization
 async function initializeDatabase() {
   try {
+    await initializeDataBase();
     await AppDataSource.initialize();
     console.log('Database initialized');
   } catch (error) {
