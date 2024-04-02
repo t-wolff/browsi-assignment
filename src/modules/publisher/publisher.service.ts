@@ -14,7 +14,7 @@ const PublisherService = {
 		}
 	},
 	getAllPublishers: async () => {
-		const publishers: Publisher[] = await publisherRepository.find();
+		const publishers: Publisher[] = await publisherRepository.find({ relations: { domains: true } });
 		return publishers;
 	},
 	getPublishersWithSearch: async (searchQuery: string | null) => {
