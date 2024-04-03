@@ -8,7 +8,11 @@ const publisherRepository = AppDataSource.getRepository(Publisher);
 
 const DomainService = {
 	getAllDomains: async () => {
-		return await domainRepository.find({ relations: { owner: true } });
+		try {
+			return await domainRepository.find({ relations: { owner: true } });
+		} catch (error) {
+			throw new Error(`${error as string} in getAllDomains`);
+		}
 	},
 	createDomain: async (domain: NewDomainType['body']) => {
 		try {
@@ -22,11 +26,14 @@ const DomainService = {
 			const createdDomain = await domainRepository.save(newDomain);
 			return createdDomain;
 		} catch (error) {
-			throw error;
-		}
+			throw new Error(`${error as string} in createDomain`);		}
 	},
 	getDomainByDomainID(id: string) {
-		return domainRepository.findOneOrFail({ where: { id } });
+		try {
+			return domainRepository.findOneOrFail({ where: { id } })
+		} catch (error) {
+			throw new Error(`${error as string} in getDomainByDomainID`);
+		}
 	},
 	updateDomain: async (domainData : Partial<Domain>) => {
 		try {
@@ -38,7 +45,7 @@ const DomainService = {
 			await domainRepository.save(updatedDomain);
 			return updatedDomain;
 		} catch(error) {
-			throw error;
+			throw new Error(`${error as string} in updateDomain`);
 		}
 	},
 	deleteDomain: async (id: string) => {
@@ -50,7 +57,7 @@ const DomainService = {
 				throw new Error(`Domain with ID ${id} not found.`);
 			}
 		} catch (error) {
-			throw error;
+			throw new Error(`${error as string} in deleteDomain`);
 		}
 	},
 };

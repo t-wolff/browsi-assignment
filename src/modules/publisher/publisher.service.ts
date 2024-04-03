@@ -10,12 +10,16 @@ const PublisherService = {
 			const newPublisher = publisherRepository.create(publisher);
 			await publisherRepository.save(newPublisher);
 		} catch (error) {
-			throw new Error(error as string);
+			throw new Error(`${error as string} in createPublisher`);
 		}
 	},
 	getAllPublishers: async () => {
-		const publishers: Publisher[] = await publisherRepository.find({ relations: { domains: true } });
-		return publishers;
+		try {
+			const publishers: Publisher[] = await publisherRepository.find({ relations: { domains: true } });
+			return publishers;
+		} catch (error) {
+			throw new Error(`${error as string} in getAllPublishers`);
+		}
 	},
 	getPublishersWithSearch: async (searchQuery: string | null) => {
 		try {
@@ -30,7 +34,7 @@ const PublisherService = {
 			}
 			return publishers;
 		} catch (error) {
-			throw new Error(error as string);
+			throw new Error(`${error as string} in getPublishersWithSearch`);
 		}
 	},
 	deletePublisher: async (id: string) => {
@@ -42,7 +46,7 @@ const PublisherService = {
 				throw new Error(`Publisher with ID ${id} not found.`);
 			}
 		} catch (error) {
-			throw error;
+			throw new Error(`${error as string} in deletePublisher`);
 		}
 	},
 };

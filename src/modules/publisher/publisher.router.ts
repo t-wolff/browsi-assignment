@@ -5,7 +5,7 @@ import { getPublishersWithSearchSchema, newPublisherSchema, deletePublisherSchem
 
 const publisherRouter = express.Router();
 
-// publisherRouter.get("/search/:searchQuery?", ZodValidate(getPublishersWithSearchSchema), getPublishersWithSearch);
+publisherRouter.get("/search/:searchQuery?", ZodValidate(getPublishersWithSearchSchema), getPublishersWithSearch);
 publisherRouter.get("/", getAllPublishers);
 publisherRouter.post("/", ZodValidate(newPublisherSchema), createPublisher);
 publisherRouter.delete("/:id?", ZodValidate(deletePublisherSchema), deletePublisher);
