@@ -20,8 +20,8 @@ export async function initializeDataBase() {
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
-  port: 3306,
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT || "", 10) || 3306,
   username: process.env.DB_USER_NAME,
   password: process.env.DB_PASSWORD,
   database: databaseName,

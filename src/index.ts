@@ -24,6 +24,7 @@ async function initializeDatabase() {
     console.log('Database initialized');
   } catch (error) {
     console.error('Error initializing database:', error);
+    process.exit(1);
   }
 }
 
