@@ -36,7 +36,7 @@ function setupRoutes() {
 // Error Handling Middleware
 function setupErrorHandling() {
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    res.status(500).send({ success: false, message: err.message });
+    res.status(500).send({ message: err.message });
   });
 }
 

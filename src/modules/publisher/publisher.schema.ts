@@ -11,8 +11,8 @@ export const newPublisherSchema = z.object({
 		name: z.string(),
 		// domains: z.array(z.object({
 		// 	name: z.string(),
-		// 	desktop_ads_qty: z.number(),
-		// 	mobile_ads_qty: z.number(),
+		// 	desktop_ads_quantity: z.number(),
+		// 	mobile_ads_quantity: z.number(),
 		// 	owner: z.string(),
 		// })).optional(),
 	}),

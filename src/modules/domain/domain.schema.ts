@@ -3,8 +3,8 @@ import { z } from "zod";
 export const newDomainSchema = z.object({
 	body: z.object({
 		name: z.string(),
-		desktop_ads_qty: z.number(),
-		mobile_ads_qty: z.number(),
+		desktop_ads_quantity: z.number(),
+		mobile_ads_quantity: z.number(),
 		owner: z.string(),
 	}),
 });
@@ -13,8 +13,8 @@ export const updateDomainSchema = z.object({
 	body: z.object({
 		id: z.string(),
 		name: z.string(),
-		desktop_ads_qty: z.number(),
-		mobile_ads_qty: z.number(),
+		desktop_ads_quantity: z.number(),
+		mobile_ads_quantity: z.number(),
 	}),
 });
 

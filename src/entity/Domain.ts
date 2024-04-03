@@ -16,10 +16,10 @@ export class Domain {
   name: string;
 
   @Column()
-  desktop_ads_qty: number;
+  desktop_ads_quantity: number;
 
   @Column()
-  mobile_ads_qty: number;
+  mobile_ads_quantity: number;
 
   @ManyToOne(() => Publisher, publisher => publisher.domains, { onDelete: 'CASCADE' })
   owner: Publisher;

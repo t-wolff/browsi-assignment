@@ -8,7 +8,7 @@ export const getPublishersWithSearch: TypedRequestHandler<getPublishersWithSearc
 	try {
 		const searchQuery = req.params.searchQuery || null;
 		const publishers = await ProfileService.getPublishersWithSearch(searchQuery);
-		res.status(200).send({ success: true, publishers });
+		res.status(200).send({ publishers });
 		} catch (error) {
 		next(error);
 	}
@@ -17,8 +17,8 @@ export const getPublishersWithSearch: TypedRequestHandler<getPublishersWithSearc
 export const createPublisher: TypedRequestHandler<newPublisherType> = async (req, res, next) => {
 	try {
 		const publisher = req.body;
-		await PublisherService.createPublisher(publisher);
-		res.status(200).send({ success: true });
+		const newPublisher = await PublisherService.createPublisher(publisher);
+		res.status(200).send({ newPublisher });
 	} catch (error) {
 		next(error);
 	}
@@ -27,7 +27,7 @@ export const createPublisher: TypedRequestHandler<newPublisherType> = async (req
 export const getAllPublishers: TypedRequestHandler<{}> = async (req, res, next) => {
 	try {
 		const publishers: Publisher[] = await PublisherService.getAllPublishers();
-		res.status(200).send({ success: true, publishers });
+		res.status(200).send({ publishers });
 	} catch (error) {
 		next(error);
 	}

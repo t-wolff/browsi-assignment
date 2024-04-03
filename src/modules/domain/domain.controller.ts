@@ -13,7 +13,7 @@ export const createNewDomain: TypedRequestHandler<NewDomainType> = async (
 ) => {
 	try {
 		const newDomain = await DomainService.createDomain(req.body);
-		res.status(200).send({ success: true, domainId: newDomain.id});
+		res.status(200).send({ domainId: newDomain.id});
 	} catch (error) {
 		next(error);
 	}
@@ -26,7 +26,7 @@ export const updateDomain: TypedRequestHandler<UpdateDomainType> = async (
 ) => {
 	try {
 		const updatedDomain = await DomainService.updateDomain(req.body);
-		res.status(200).send({ success: true, updatedDomain });
+		res.status(200).send({ updatedDomain });
 	} catch (error) {
 		next(error);
 	}
